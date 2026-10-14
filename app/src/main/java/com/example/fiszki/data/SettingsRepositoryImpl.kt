@@ -58,7 +58,7 @@ class SettingsRepositoryImpl @Inject constructor(
     override suspend fun deleteAfterFive(delete: Boolean) {
         context.dataStore.updateData {
             it.toMutablePreferences().also { preferences ->
-                preferences[INSTALLATION_STATUS] = delete
+                preferences[DELETE_AFTER_FIVE] = delete
             }
         }
     }

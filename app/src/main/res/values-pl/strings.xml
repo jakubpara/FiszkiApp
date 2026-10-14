@@ -12,4 +12,7 @@
     <string name="save_and_create_next">zapisz i stwórz następną</string>
     <string name="translate_into_english">tłumacz automatycznie na angielski</string>
     <string name="download_automatically_translation_requires_30_mb">pobierz automatyczne tłumaczenie *wymaga 30 mb</string>
+    <string name="native_language_first">pierwsze język natywny</string>
+    <string name="can_t_translate_from_not_native_language_automatically">nie można tłumaczyć automatycznie z drugiego języka (ang)</string>
+
 </resources>

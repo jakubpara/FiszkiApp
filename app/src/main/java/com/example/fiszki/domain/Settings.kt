@@ -1,7 +1,6 @@
 package com.example.fiszki.domain
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
-import com.example.fiszki.domain.usecase.DeleteAfterFive
 import com.example.fiszki.domain.usecase.UpdateInstallationStatusUseCase
 
 data class Settings(

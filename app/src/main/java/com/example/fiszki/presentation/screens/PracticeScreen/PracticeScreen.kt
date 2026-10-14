@@ -57,21 +57,37 @@ fun PracticeScreen(
         }
 
         PracticeState.EmptyListOrRecordsOver -> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(64.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Koniec fiszek albo ich brak",
-                    fontSize = 24.sp
-                )
-                Text(
-                    text = "End of cards or lack of them",
-                    fontSize = 24.sp
-                )
+            Scaffold(
+                modifier = modifier.fillMaxSize(),
+                topBar = {
+                    TopAppBar(
+                        title = { Text(stringResource(R.string.practice)) },
+                        navigationIcon = {
+                            Icon(
+                                modifier = Modifier.clickable(onClick = onBackClick),
+                                painter = painterResource(R.drawable.arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24),
+                                contentDescription = stringResource(R.string.go_back),
+                            )
+                        }
+                    )
+                }
+            ) { innerPadding ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Koniec fiszek albo ich brak",
+                        fontSize = 24.sp
+                    )
+                    Text(
+                        text = "End of cards or lack of them",
+                        fontSize = 24.sp
+                    )
+                }
             }
         }
 
@@ -83,7 +99,7 @@ fun PracticeScreen(
                         title = { Text(stringResource(R.string.practice)) },
                         navigationIcon = {
                             Icon(
-                                modifier = Modifier.clickable(onClick = onBackClick),
+                                modifier = Modifier.clickable(onClick = onBackClick).padding(start = 16.dp),
                                 painter = painterResource(R.drawable.arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24),
                                 contentDescription = stringResource(R.string.go_back),
                             )
@@ -161,7 +177,7 @@ fun PracticeScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 24.dp)
-                                .height(64.dp),
+                                .height(72.dp),
                             shape = RoundedCornerShape(16.dp),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = MaterialTheme.colorScheme.tertiary,

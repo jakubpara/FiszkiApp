@@ -46,7 +46,7 @@ fun SettingsScreen(
                 },
                 navigationIcon = {
                     Icon(
-                        modifier = Modifier.clickable(onClick = onBackClick),
+                        modifier = Modifier.clickable(onClick = onBackClick).padding(start = 16.dp),
                         painter = painterResource(R.drawable.arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24),
                         contentDescription = stringResource(R.string.go_back),
                     )

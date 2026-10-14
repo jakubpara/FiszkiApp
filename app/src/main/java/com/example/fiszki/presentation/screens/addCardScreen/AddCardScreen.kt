@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -98,7 +99,7 @@ fun AddCardScreen(
             PrototypeScreen(
                 Modifier,
                 page = "2",
-                enabled1 = true,
+                enabled1 = currentSettingsState.nativeLanguage,
                 enabled2 = currentState.isEnough,
                 enabled3 = currentState.isEnough,
                 button1Click = {
@@ -155,7 +156,7 @@ fun PrototypeScreen(
                 navigationIcon = {
                     Icon(
                         modifier = Modifier.clickable(onClick = { addCardViewModel.processCommand(
-                            AddCardCommand.OnBackClick) } ),
+                            AddCardCommand.OnBackClick) } ).padding(start = 16.dp),
                         painter = painterResource(R.drawable.arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24),
                         contentDescription = stringResource(R.string.go_back),
                     )
@@ -178,7 +179,7 @@ fun PrototypeScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "native language first"
+                    text = stringResource(R.string.native_language_first)
                 )
                 Switch(
                     modifier = Modifier.padding(start = 16.dp),
@@ -310,7 +311,7 @@ fun PrototypeScreen(
             //TODO(tu są hardcoded rzeczy to trzeba zmienić for sure)
             Column(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = modifier.height(320.dp)
+                modifier = modifier.height(400.dp)
             ) {
                 Button(
                     enabled = enabled1,
@@ -328,11 +329,20 @@ fun PrototypeScreen(
                     )
                 ) {
                     if (currentSettingsState.installationStatus == true) { // w zaleznosci czy w data store w settingsrepository pokazuje sie ze pobrane czy nie inna wersja
-                        Text(
-                            text = stringResource(R.string.translate_into_english),
-                            fontSize = 24.sp,
-                            modifier = Modifier.padding(8.dp)
-                        )
+
+                        if (currentSettingsState.nativeLanguage==true) {
+                            Text(
+                                text = stringResource(R.string.translate_into_english),
+                                fontSize = 24.sp,
+                                modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                            )
+                        }else{
+                            Text(
+                                text = stringResource(R.string.can_t_translate_from_not_native_language_automatically),
+                                fontSize = 24.sp,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
                     } else {
                         Text(
                             text = stringResource(R.string.download_automatically_translation_requires_30_mb),

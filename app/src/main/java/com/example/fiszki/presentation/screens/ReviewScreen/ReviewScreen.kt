@@ -82,8 +82,42 @@ fun ReviewScreen(
 
 
         ReviewingState.EmptyListOrRecordsOver -> {
-            Text(text = "Koniec fiszek albo ich brak", fontSize = 24.sp, modifier = Modifier.padding(64.dp, top = 128.dp))
-        Text(text = "End of cards or lack of them ",fontSize = 24.sp, modifier = Modifier.padding(64.dp, top = 256.dp))}
+            Scaffold(
+                Modifier.fillMaxSize(),
+                topBar = {
+                    TopAppBar(
+                        title = {
+                            Text(stringResource(R.string.quick_checkup))
+                        },
+                        navigationIcon = {
+                            Icon(
+                                modifier = Modifier.clickable(onClick = onBackClick).padding(start = 16.dp),
+                                painter = painterResource(R.drawable.arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24),
+                                contentDescription = stringResource(R.string.go_back),
+                            )
+                        }
+                    )
+                }
+
+            ) { innerPadding ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Koniec fiszek albo ich brak",
+                        fontSize = 24.sp,
+                    )
+                    Text(
+                        text = "End of cards or lack of them ",
+                        fontSize = 24.sp,
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -114,11 +148,11 @@ fun WholeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(stringResource(R.string.quick_checkup))
+                    Text(stringResource(R.string.quick_checkup), modifier = Modifier)
                 },
                 navigationIcon = {
                     Icon(
-                        modifier = Modifier.clickable(onClick =  onBackClick ),
+                        modifier = Modifier.clickable(onClick =  onBackClick ).padding(start = 16.dp),
                         painter = painterResource(R.drawable.arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24),
                         contentDescription = stringResource(R.string.go_back),
                     )

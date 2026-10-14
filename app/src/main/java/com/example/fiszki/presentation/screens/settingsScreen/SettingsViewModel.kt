@@ -3,6 +3,7 @@ package com.example.fiszki.presentation.screens.settingsScreen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fiszki.domain.usecase.DeleteAfterFiveUseCase
 import com.example.fiszki.domain.usecase.GetSettingsUseCase
 import com.example.fiszki.domain.usecase.InstallTranslatorUseCase
 import com.example.fiszki.domain.usecase.UpdateInstallationStatusUseCase
@@ -20,6 +21,7 @@ class SettingsViewModel @Inject constructor(
     private val getSettingsUseCase: GetSettingsUseCase,
     private val updateLanguageUseCase: UpdateLanguageUseCase,
     private val updateInstallationStatusUseCase: UpdateInstallationStatusUseCase,
+    private val deleteAfterFiveUseCase: DeleteAfterFiveUseCase,
     private val installTranslatorUseCase: InstallTranslatorUseCase,
 ): ViewModel() {
     private val _settingsState = MutableStateFlow<SettingsState>(SettingsState(false, false,true))
@@ -81,9 +83,9 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun deleteAfterFive(native: Boolean){
+    fun deleteAfterFive(delete: Boolean){
         viewModelScope.launch {
-            updateLanguageUseCase(native)
+            deleteAfterFiveUseCase(delete)
         }
     }
 
