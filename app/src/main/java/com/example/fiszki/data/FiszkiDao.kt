@@ -23,7 +23,7 @@ interface FiszkiDao {
     suspend fun getNextExample(): FiszkaDbModel?
 
     @Query("Select * FROM fiszka")
-   fun getAllCards():List<FiszkaDbModel>
+    suspend fun getAllCards():List<FiszkaDbModel>
 
     @Query("UPDATE fiszka SET counter = :counter WHERE id == :id")
     suspend fun changeCounter(id:Int, counter: Int)

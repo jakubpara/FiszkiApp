@@ -7,4 +7,8 @@
     <string name="go_back">Go back</string>
     <string name="quick_checkup">Quick checkup</string>
     <string name="delete">delete fiszka</string>
+    <string name="save_and_quit">save and quit</string>
+    <string name="save_and_create_next">save and create next</string>
+    <string name="translate_into_english">Translate into English</string>
+    <string name="download_automatically_translation_requires_30_mb">"download automatically translation *requires 30 mb "</string>
 </resources>

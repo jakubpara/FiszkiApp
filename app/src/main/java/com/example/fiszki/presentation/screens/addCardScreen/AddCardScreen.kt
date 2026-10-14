@@ -63,6 +63,7 @@ fun AddCardScreen(
     val state = addCardViewModel.state.collectAsState()
     val currentState = state.value
 
+
     val settingsState = settingsViewModel.settingsState.collectAsState()
     val currentSettingsState = settingsState.value
 
@@ -149,7 +150,7 @@ fun PrototypeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Add Card")
+                    Text(stringResource(R.string.create_new_card))
                 },
                 navigationIcon = {
                     Icon(
@@ -169,8 +170,6 @@ fun PrototypeScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
-
-
             ) {
 
             Row(
@@ -330,13 +329,13 @@ fun PrototypeScreen(
                 ) {
                     if (currentSettingsState.installationStatus == true) { // w zaleznosci czy w data store w settingsrepository pokazuje sie ze pobrane czy nie inna wersja
                         Text(
-                            text = "Translate into English",
+                            text = stringResource(R.string.translate_into_english),
                             fontSize = 24.sp,
                             modifier = Modifier.padding(8.dp)
                         )
                     } else {
                         Text(
-                            text = "download automatically translation *requires 30 mb ",
+                            text = stringResource(R.string.download_automatically_translation_requires_30_mb),
                             fontSize = 24.sp,
                             modifier = Modifier.padding(8.dp)
                         )
@@ -359,7 +358,7 @@ fun PrototypeScreen(
                     )
                 ) {
                     Text(
-                        text = "zapisz i idz dalej",
+                        text = stringResource(R.string.save_and_create_next),
                         fontSize = 24.sp,
                         modifier = Modifier.padding(8.dp)
                     )
@@ -380,7 +379,7 @@ fun PrototypeScreen(
                     )
                 ) {
                     Text(
-                        text = "zapisz i wyjdz ",
+                        text = stringResource(R.string.save_and_quit),
                         fontSize = 24.sp,
                         modifier = Modifier.padding(8.dp)
                     )

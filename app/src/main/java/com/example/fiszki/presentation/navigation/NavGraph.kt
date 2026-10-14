@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.fiszki.presentation.screens.PracticeScreen.PracticeScreen
 import com.example.fiszki.presentation.screens.ReviewScreen.ReviewScreen
 import com.example.fiszki.presentation.screens.addCardScreen.AddCardScreen
 import com.example.fiszki.presentation.screens.homeScreen.HomeScreen
@@ -23,8 +24,8 @@ fun NavGraph() {
                 modifier = Modifier,
                 onReviewClick = { navController.navigate(Screen.ReviewScreen.route) },
                 onCreateCardClick = { navController.navigate(Screen.AddCard.route) },
-               onSettingClick = {navController.navigate(Screen.SettingsScreen.route)},
-                onPracticeClick = {}
+                onSettingClick = { navController.navigate(Screen.SettingsScreen.route) },
+                onPracticeClick = { navController.navigate(Screen.PracticeScreen.route) }
             )
         }
         composable(Screen.AddCard.route) {
@@ -33,11 +34,13 @@ fun NavGraph() {
         composable(Screen.ReviewScreen.route) {
             ReviewScreen(onBackClick = { navController.popBackStack() })
         }
-        composable(Screen.SettingsScreen.route){
-            SettingsScreen(onBackClick = {navController.popBackStack()})
+        composable(Screen.SettingsScreen.route) {
+            SettingsScreen(onBackClick = { navController.popBackStack() })
         }
-
+        composable(Screen.PracticeScreen.route){
+            PracticeScreen(onBackClick ={ navController.popBackStack()})
     }
+}
 }
 
 
@@ -49,5 +52,7 @@ sealed class Screen(val route: String) {
 
     data object ReviewScreen : Screen("review_screen")
 
-    data object SettingsScreen : Screen("settingsScreen")
+    data object SettingsScreen : Screen("settings_screen")
+
+    data object PracticeScreen : Screen("practice_screen")
 }

@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetAllCardsUseCase @Inject constructor(
    private val repository: FiszkiRepository
 ){
-    operator fun invoke():List<Fiszka>{
+    suspend operator fun invoke():List<Fiszka>{
         return repository.getAllCards()
     }
 

@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph
 import com.example.fiszki.presentation.navigation.NavGraph
+import com.example.fiszki.presentation.screens.PracticeScreen.PracticeScreen
+import com.example.fiszki.presentation.screens.PracticeScreen.PracticeScreenViewModel
 import com.example.fiszki.presentation.screens.ReviewScreen.ReviewScreen
 import com.example.fiszki.presentation.screens.addCardScreen.AddCardCommand
 import com.example.fiszki.presentation.screens.addCardScreen.AddCardScreen
@@ -26,6 +28,7 @@ class MainActivity : ComponentActivity() {
                 //HomeScreen(Modifier,{},{},{},{})
                //ReviewScreen(Modifier, {},)
                 NavGraph()
+                //PracticeScreen(Modifier,{})
             }
         }
     }

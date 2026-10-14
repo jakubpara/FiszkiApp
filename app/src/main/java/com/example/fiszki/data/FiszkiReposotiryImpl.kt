@@ -56,7 +56,7 @@ class FiszkiRepositoryImpl @Inject constructor(
         fiszkiDao.changeCounter(id, newCounter)
     }
 
-    override fun getAllCards(): List<Fiszka> {
+    override suspend fun getAllCards(): List<Fiszka> {
         val fiszkiList = fiszkiDao.getAllCards()
         val newListOfEntity = mutableListOf<Fiszka>()
         fiszkiList.forEach {

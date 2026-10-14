@@ -42,7 +42,7 @@ fun SettingsScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(stringResource(R.string.quick_checkup))
+                    Text(stringResource(R.string.settings))
                 },
                 navigationIcon = {
                     Icon(

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">fiszki</string>
+    <string name="practice">Ćwicz</string>
+    <string name="review">Przeglądaj</string>
+    <string name="create_new_card">Stwórz nową fiszkę</string>
+    <string name="settings">Ustawienia</string>
+    <string name="go_back">Powrót</string>
+    <string name="quick_checkup">szybkie sprawdzenie</string>
+    <string name="delete">usuń fiszke</string>
+    <string name="save_and_quit">zapisz i wyjdź</string>
+    <string name="save_and_create_next">zapisz i stwórz następną</string>
+    <string name="translate_into_english">tłumacz automatycznie na angielski</string>
+    <string name="download_automatically_translation_requires_30_mb">pobierz automatyczne tłumaczenie *wymaga 30 mb</string>
+</resources>

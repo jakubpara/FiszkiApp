@@ -16,7 +16,7 @@ interface FiszkiRepository {
 
     suspend fun getNextExample(): Fiszka?
 
-    fun getAllCards():List<Fiszka>
+    suspend fun getAllCards():List<Fiszka>
 
     suspend fun iKnowIt(id:Int)
 }
