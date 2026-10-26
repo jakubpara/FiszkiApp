@@ -10,3 +10,7 @@ package com.example.fiszki.presentation
 //Możnaby przy practiceScreen dodać jakis licznik ile z rzedu i animacje chuje muje dzikie węże
 //mozna by też wiadomo że jest ci liczona jakas kolejka że nie za każdym razem jest brane losowe słowko żeby nie było że bedzie sie powtarzał
 //możnaby zrobić że automatyczne tłumaczenie nie tylko wtedy gdy obrócisz karte
+
+// dodatkowa opcja zawsze
+//ze od kolejnego był napis
+//wygeneruj certyfikat i daj apk

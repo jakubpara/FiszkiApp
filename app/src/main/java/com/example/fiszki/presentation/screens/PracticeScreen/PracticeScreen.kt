@@ -34,7 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.fiszki.R
 import com.example.fiszki.presentation.screens.settingsScreen.SettingsViewModel
 
@@ -163,30 +163,94 @@ fun PracticeScreen(
                     }
 
 
+
                     currentState.answers.forEachIndexed { index, answer ->
-                        Button(
-                            onClick = {
-                                val isCorrect = if (index == currentState.correctIndex){true}else{false}
-                                viewModel.processCommand(
-                                    PracticeCommand.OnAnswerClick(
-                                        option = index,
-                                        correct = isCorrect
+                        if (currentState.afterClick == false) {
+                            Button(
+                                onClick = {
+                                    val isCorrect = if (index == currentState.correctIndex) {
+                                        true
+                                    } else {
+                                        false
+                                    }
+                                    viewModel.processCommand(
+                                        PracticeCommand.OnAnswerClick(
+                                            option = index,
+                                            correct = isCorrect
+                                        )
                                     )
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 24.dp)
+                                    .height(72.dp),
+                                shape = RoundedCornerShape(16.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.tertiary,
+                                    contentColor = Color.Black
                                 )
-                            },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 24.dp)
-                                .height(72.dp),
-                            shape = RoundedCornerShape(16.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = MaterialTheme.colorScheme.tertiary,
-                                contentColor = Color.Black
-                            )
-                        ) {
-                            Text(text = answer, fontSize = 20.sp)
+                            ) {
+                                Text(text = answer, fontSize = 20.sp)
+                            }
+                        }else{
+                            if (index == currentState.correctIndex) {
+                                Button(
+                                    onClick = {
+                                        val isCorrect = true
+
+                                        viewModel.processCommand(
+                                            PracticeCommand.OnAnswerClick(
+                                                option = index,
+                                                correct = isCorrect
+                                            )
+                                        )
+                                    },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 24.dp)
+                                        .height(72.dp),
+                                    shape = RoundedCornerShape(16.dp),
+                                    colors = ButtonDefaults.buttonColors(
+
+                                        containerColor = Color.Green,
+                                        contentColor = Color.Black
+                                    )
+                                ) {
+                                    Text(text = answer, fontSize = 20.sp)
+                                }
+                            }else{
+                                Button(
+                                    onClick = {
+                                        val isCorrect = false
+
+                                        viewModel.processCommand(
+                                            PracticeCommand.OnAnswerClick(
+                                                option = index,
+                                                correct = isCorrect
+                                            )
+                                        )
+                                    },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 24.dp)
+                                        .height(72.dp),
+                                    shape = RoundedCornerShape(16.dp),
+                                    colors = ButtonDefaults.buttonColors(
+
+                                        containerColor = Color.Gray,
+                                        contentColor = Color.Black
+                                    )
+                                ) {
+                                    Text(text = answer, fontSize = 20.sp)
+                                }
+                            }
+
                         }
+
                     }
+
+
+
                 }
             }
         }

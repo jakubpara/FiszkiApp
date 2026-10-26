@@ -10,11 +10,13 @@ import com.example.fiszki.domain.usecase.GetAllCardsUseCase
 import com.example.fiszki.domain.usecase.GetNextExampleUseCase
 import com.example.fiszki.domain.usecase.IKnowItUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.milliseconds
 
 @HiltViewModel
 class PracticeScreenViewModel @Inject constructor(
@@ -32,7 +34,8 @@ class PracticeScreenViewModel @Inject constructor(
     private fun PracticeStateData(
         fiszka: Fiszka,
         allCards: List<Fiszka>,
-        nativeLanguage: Boolean
+        nativeLanguage: Boolean,
+        afterClick: Boolean
     ): PracticeState.Practicing {
 
         val question = if (nativeLanguage) fiszka.input else fiszka.translation
@@ -56,7 +59,8 @@ class PracticeScreenViewModel @Inject constructor(
             correctAnswer = correctAnswer,
             answers = allAnswers,
             correctIndex = allAnswers.indexOf(correctAnswer),
-            nativeLanguage = nativeLanguage
+            nativeLanguage = nativeLanguage,
+            afterClick = afterClick
         )
     }
     private suspend fun loadNextCard() {
@@ -65,7 +69,7 @@ class PracticeScreenViewModel @Inject constructor(
         val nextExample = getNextExampleUseCase()
 
         _state.value = if (nextExample != null) {
-            PracticeStateData(nextExample, allCards, settings.nativeLanguage)
+            PracticeStateData(nextExample, allCards, settings.nativeLanguage,false)
         } else {
             PracticeState.EmptyListOrRecordsOver
         }
@@ -92,11 +96,22 @@ class PracticeScreenViewModel @Inject constructor(
                         // zamknąć bo nie całość tylko tą po kropce lauch sie okazuje że możesz też dać return@forEach return@map
                         // return@let i to konczy to co jest po @ a nie całą funkcje
 
+                        _state.value = PracticeState.Practicing(
+                            fiszka = currentState.fiszka,
+                            question = currentState.question,
+                            correctAnswer = currentState.correctAnswer,
+                            answers = currentState.answers,
+                            correctIndex = currentState.correctIndex,
+                            nativeLanguage = currentState.nativeLanguage,
+                            afterClick = true
+                        )
                         if (command.correct) {
                             iKnowItUseCase(fiszka.id)
                         } else {
                             dontRememberUseCase(fiszka.id)
                         }
+
+                        delay(2000L.milliseconds) // tyle bedzie trwało wyswietlanie dobrej odpowiedzi przed nastepnym
 
                         loadNextCard()
                     }
@@ -133,7 +148,8 @@ sealed interface PracticeState {
         val correctAnswer: String,
         val answers: List<String>,
         val correctIndex: Int,
-        val nativeLanguage: Boolean
+        val nativeLanguage: Boolean,
+        val afterClick : Boolean
     ) : PracticeState
 
     data object EmptyListOrRecordsOver : PracticeState
